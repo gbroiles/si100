@@ -4,10 +4,43 @@ import os
 import sys
 
 import PySimpleGUI as sg
+import pdfrw
+
+output_pdf_path = "test.pdf"
+
+
+
 
 
 def main():
     """ main event loop """
+    global output_pdf_path
+
+    ANNOT_KEY = '/Annots'
+    ANNOT_FIELD_KEY = '/T'
+    ANNOT_VAL_KEY = '/V'
+    ANNOT_RECT_KEY = '/Rect'
+    SUBTYPE_KEY = '/Subtype'
+    WIDGET_SUBTYPE_KEY = '/Widget'
+
+    def fill_dict():
+        data = {}
+        data["2EntityName"] = window['corpname2']
+        data["2EntityNumber"] = window['entity_numA']
+        return data
+
+    def fill_form(data_dict):
+        template_pdf = pdfrw.PdfReader('corp_so100.pdf')
+        annotations = template_pdf.pages[0][ANNOT_KEY]
+        for annotation in annotations:
+            if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+                if annotation[ANNOT_FIELD_KEY]:
+                    key = annotation[ANNOT_FIELD_KEY][1:-1]
+                    if key in data_dict.keys():
+                        annotation.update(
+                            pdfrw.PdfDict(V='{}'.format(data_dict[key]))
+                        )
+        return template_pdf
 
     phy_addr_layout = [
         [sg.T("Street address:"), sg.In(key="3aAddress")],
@@ -90,10 +123,18 @@ def main():
         grab_anywhere=False,
         #        size=(650, 200),
     )
+    
     while True:
         event, values = window.read()
         if event in (None, "Cancel"):
             break
+        if event == "Print":
+            formdata = fill_dict()
+            fill_form(formdata)
+        if event == "Save":
+            formdata = fill_dict()
+            finished_pdf = fill_form(formdata)
+            pdfrw.PdfWriter().write(output_pdf_path, finished_pdf)
 
     window.close()
 
