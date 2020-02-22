@@ -1,0 +1,2 @@
+pdfrw
+PySimpleGUI
