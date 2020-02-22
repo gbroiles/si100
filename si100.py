@@ -30,6 +30,15 @@ def main():
         [sg.Frame('Mailing address', mail_addr_layout)],
         ]
 
+    ceo_layout = [
+        ]
+
+    secretary_layout = [
+        ]
+
+    cfo_layout = [
+        ]
+
     tab2_layout = [
         [sg.Frame('Chief Executive Officer', ceo_layout)],
         [sg.Frame('Secretary', secretary_layout)],
@@ -38,7 +47,7 @@ def main():
 
     tab3_layout = [
     [sg.Radio('Agent is an individual', 'agent1', default=True)],
-    [sg.Radio('Agent is a corporation', 'agent1']
+    [sg.Radio('Agent is a corporation', 'agent1')],
     [sg.T("Agent first name:"), sg.In(key="agent_given")],
     [sg.T("Agent middle name:"), sg.In(key="agent_middle")],
     [sg.T("Agent last name:"), sg.In(key="agent_last")],
