@@ -20,10 +20,10 @@ def main():
     SUBTYPE_KEY = "/Subtype"
     WIDGET_SUBTYPE_KEY = "/Widget"
 
-    def fill_dict():
+    def fill_dict(values):
         data = {}
-        data["2EntityName"] = window["corpname2"]
-        data["2EntityNumber"] = window["entity_num"]
+        data["2EntityName"] = values["corpname2"]
+        data["2EntityNumber"] = values["entity_num"]
         return data
 
     def fill_form(data_dict):
@@ -35,6 +35,7 @@ def main():
                     key = annotation[ANNOT_FIELD_KEY][1:-1]
                     if key in data_dict.keys():
                         annotation.update(pdfrw.PdfDict(V="{}".format(data_dict[key])))
+                        annotation.update(pdfrw.PdfDict(Ff=1))
         return template_pdf
 
     phy_addr_layout = [
@@ -124,10 +125,10 @@ def main():
         if event in (None, "Cancel"):
             break
         if event == "Print":
-            formdata = fill_dict()
+            formdata = fill_dict(values)
             fill_form(formdata)
         if event == "Save":
-            formdata = fill_dict()
+            formdata = fill_dict(values)
             finished_pdf = fill_form(formdata)
             pdfrw.PdfWriter().write(output_pdf_path, finished_pdf)
 
