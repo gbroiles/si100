@@ -15,4 +15,8 @@ gzip_string = gzip.compress(resource)
 bzip_string = bz2.compress(resource)
 lzma_string = lzma.compress(resource)
 
-print("gzip = {:,}  bzip = {:,}  lzma = {:,}".format(len(gzip_string), len(bzip_string), len(lzma_string)))
+print(
+    "gzip = {:,}  bzip = {:,}  lzma = {:,}".format(
+        len(gzip_string), len(bzip_string), len(lzma_string)
+    )
+)
