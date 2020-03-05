@@ -154,6 +154,7 @@ def main():
     tab3_layout = [
         [sg.Radio("Agent is an individual", "agent1", default=True)],
         [sg.Radio("Agent is a corporation", "agent1")],
+        [sg.T("Agent corporate name:"), sg.In(key="agent_corpname")],
         [sg.T("Agent first name:"), sg.In(key="agent_given")],
         [sg.T("Agent middle name:"), sg.In(key="agent_middle")],
         [sg.T("Agent last name:"), sg.In(key="agent_last")],
