@@ -93,7 +93,20 @@ def main():
         [sg.T("ZIP:"), sg.In(key="sec_ZIP")],
     ]
 
-    cfo_layout = []
+    cfo_layout = [
+        [sg.T("First name:"), sg.In(key="cfo_firstname")],
+        [sg.T("Middle name:"), sg.In(key="cfo_middlename")],
+        [st.T("Last name:"), sg.In(key="cfo_lastname")],
+        [st.T("Suffix:"), sg.In(lkey="cfo_suffix")],
+        [
+            sg.T("Street address:"),
+            sg.In(key="cfo_street"),
+            sg.Button("Copy", key="Copy_cfo_Addr"),
+        ],
+        [sg.T("City:"), sg.In(key="cfo_City")],
+        [sg.T("State:"), sg.In(key="cfo_State")],
+        [sg.T("ZIP:"), sg.In(key="cfo_ZIP")],
+    ]
 
     tab2_layout = [
         [sg.Frame("Chief Executive Officer", ceo_layout)],
