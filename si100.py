@@ -64,18 +64,18 @@ def main():
     ]
 
     ceo_layout = [
-        [sg.T("First name:"), sg.In(key="ceo_firstname")],
-        [sg.T("Middle name:"), sg.In(key="ceo_middlename")],
-        [sg.T("Last name:"), sg.In(key="ceo_lastname")],
-        [sg.T("Suffix:"), sg.In(key="ceo_suffix")],
+        [sg.T("First name:"), sg.In(key="ceo_firstname"),
+         sg.T("Middle name:"), sg.In(key="ceo_middlename")],
+        [sg.T("Last name:"), sg.In(key="ceo_lastname"),
+        sg.T("Suffix:"), sg.In(key="ceo_suffix")],
         [
             sg.T("Street address:"),
             sg.In(key="ceo_street"),
             sg.Button("Copy", key="Copy_ceo_Addr"),
         ],
-        [sg.T("City:"), sg.In(key="ceo_City")],
-        [sg.T("State:"), sg.In(key="ceo_State")],
-        [sg.T("ZIP:"), sg.In(key="ceo_ZIP")],
+        [sg.T("City:"), sg.In(key="ceo_City"),
+        sg.T("State:"), sg.In(key="ceo_State"),
+        sg.T("ZIP:"), sg.In(key="ceo_ZIP")],
     ]
 
     secretary_layout = [
