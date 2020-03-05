@@ -64,14 +64,14 @@ def main():
     ]
 
     ceo_layout = [
+        [sg.Button("Copy from corp mailing address", key="Copy_ceo_Addr")],
         [sg.T("First name:"), sg.In(key="ceo_firstname", size=(15,1)),
          sg.T("Middle name:"), sg.In(key="ceo_middlename", size=(15,1))],
         [sg.T("Last name:"), sg.In(key="ceo_lastname", size=(15,1)),
         sg.T("Suffix:"), sg.In(key="ceo_suffix", size=(5,1))],
         [
             sg.T("Street address:"),
-            sg.In(key="ceo_street", size=(30,1)),
-            sg.Button("Copy", key="Copy_ceo_Addr"),
+            sg.In(key="ceo_street", size=(40,1)),
         ],
         [sg.T("City:"), sg.In(key="ceo_City", size=(15,1)),
         sg.T("State:"), sg.In(key="ceo_State", size=(2,1)),
@@ -79,33 +79,35 @@ def main():
     ]
 
     secretary_layout = [
-        [sg.T("First name:"), sg.In(key="sec_firstname")],
-        [sg.T("Middle name:"), sg.In(key="sec_middlename")],
-        [sg.T("Last name:"), sg.In(key="sec_lastname")],
-        [sg.T("Suffix:"), sg.In(key="sec_suffix")],
+        [sg.Button("Copy from corp mailing address", key="Copy_sec_Addr")],
+        [sg.T("First name:"), sg.In(key="sec_firstname", size=(15,1)),
+         sg.T("Middle name:"), sg.In(key="sec_middlename", size=(15,1))],
+        [sg.T("Last name:"), sg.In(key="sec_lastname", size=(15,1)),
+        sg.T("Suffix:"), sg.In(key="sec_suffix", size=(5,1))],
         [
             sg.T("Street address:"),
-            sg.In(key="sec_street"),
-            sg.Button("Copy", key="Copy_sec_Addr"),
+            sg.In(key="sec_street", size=(40,1)),
         ],
-        [sg.T("City:"), sg.In(key="sec_City")],
-        [sg.T("State:"), sg.In(key="sec_State")],
-        [sg.T("ZIP:"), sg.In(key="sec_ZIP")],
+        [sg.T("City:"), sg.In(key="sec_City", size=(15,1)),
+        sg.T("State:"), sg.In(key="sec_State", size=(2,1)),
+        sg.T("ZIP:"), sg.In(key="sec_ZIP", size=(10,1))],
+
     ]
 
     cfo_layout = [
-        [sg.T("First name:"), sg.In(key="cfo_firstname")],
-        [sg.T("Middle name:"), sg.In(key="cfo_middlename")],
-        [sg.T("Last name:"), sg.In(key="cfo_lastname")],
-        [sg.T("Suffix:"), sg.In(key="cfo_suffix")],
+        [sg.Button("Copy from corp mailing address", key="Copy_cfo_Addr")],
+        [sg.T("First name:"), sg.In(key="cfo_firstname", size=(15,1)),
+         sg.T("Middle name:"), sg.In(key="cfo_middlename", size=(15,1))],
+        [sg.T("Last name:"), sg.In(key="cfo_lastname", size=(15,1)),
+        sg.T("Suffix:"), sg.In(key="cfo_suffix", size=(5,1))],
         [
             sg.T("Street address:"),
-            sg.In(key="cfo_street"),
-            sg.Button("Copy", key="Copy_cfo_Addr"),
+            sg.In(key="cfo_street", size=(40,1)),
         ],
-        [sg.T("City:"), sg.In(key="cfo_City")],
-        [sg.T("State:"), sg.In(key="cfo_State")],
-        [sg.T("ZIP:"), sg.In(key="cfo_ZIP")],
+        [sg.T("City:"), sg.In(key="cfo_City", size=(15,1)),
+        sg.T("State:"), sg.In(key="cfo_State", size=(2,1)),
+        sg.T("ZIP:"), sg.In(key="cfo_ZIP", size=(10,1))],
+
     ]
 
     tab2_layout = [
