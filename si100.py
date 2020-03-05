@@ -66,8 +66,8 @@ def main():
     ceo_layout = [
         [sg.T("First name:"), sg.In(key="ceo_firstname")],
         [sg.T("Middle name:"), sg.In(key="ceo_middlename")],
-        [st.T("Last name:"), sg.In(key="ceo_lastname")],
-        [st.T("Suffix:"), sg.In(lkey="ceo_suffix")],
+        [sg.T("Last name:"), sg.In(key="ceo_lastname")],
+        [sg.T("Suffix:"), sg.In(key="ceo_suffix")],
         [
             sg.T("Street address:"),
             sg.In(key="ceo_street"),
@@ -81,8 +81,8 @@ def main():
     secretary_layout = [
         [sg.T("First name:"), sg.In(key="sec_firstname")],
         [sg.T("Middle name:"), sg.In(key="sec_middlename")],
-        [st.T("Last name:"), sg.In(key="sec_lastname")],
-        [st.T("Suffix:"), sg.In(lkey="sec_suffix")],
+        [sg.T("Last name:"), sg.In(key="sec_lastname")],
+        [sg.T("Suffix:"), sg.In(key="sec_suffix")],
         [
             sg.T("Street address:"),
             sg.In(key="sec_street"),
@@ -96,8 +96,8 @@ def main():
     cfo_layout = [
         [sg.T("First name:"), sg.In(key="cfo_firstname")],
         [sg.T("Middle name:"), sg.In(key="cfo_middlename")],
-        [st.T("Last name:"), sg.In(key="cfo_lastname")],
-        [st.T("Suffix:"), sg.In(lkey="cfo_suffix")],
+        [sg.T("Last name:"), sg.In(key="cfo_lastname")],
+        [sg.T("Suffix:"), sg.In(key="cfo_suffix")],
         [
             sg.T("Street address:"),
             sg.In(key="cfo_street"),
