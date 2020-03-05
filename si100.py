@@ -63,9 +63,35 @@ def main():
         [sg.Frame("Mailing address", mail_addr_layout)],
     ]
 
-    ceo_layout = []
+    ceo_layout = [
+        [sg.T("First name:"), sg.In(key="ceo_firstname")],
+        [sg.T("Middle name:"), sg.In(key="ceo_middlename")],
+        [st.T("Last name:"), sg.In(key="ceo_lastname")],
+        [st.T("Suffix:"), sg.In(lkey="ceo_suffix")],
+        [
+            sg.T("Street address:"),
+            sg.In(key="ceo_street"),
+            sg.Button("Copy", key="Copy_ceo_Addr"),
+        ],
+        [sg.T("City:"), sg.In(key="ceo_City")],
+        [sg.T("State:"), sg.In(key="ceo_State")],
+        [sg.T("ZIP:"), sg.In(key="ceo_ZIP")],
+    ]
 
-    secretary_layout = []
+    secretary_layout = [
+        [sg.T("First name:"), sg.In(key="sec_firstname")],
+        [sg.T("Middle name:"), sg.In(key="sec_middlename")],
+        [st.T("Last name:"), sg.In(key="sec_lastname")],
+        [st.T("Suffix:"), sg.In(lkey="sec_suffix")],
+        [
+            sg.T("Street address:"),
+            sg.In(key="sec_street"),
+            sg.Button("Copy", key="Copy_sec_Addr"),
+        ],
+        [sg.T("City:"), sg.In(key="sec_City")],
+        [sg.T("State:"), sg.In(key="sec_State")],
+        [sg.T("ZIP:"), sg.In(key="sec_ZIP")],
+    ]
 
     cfo_layout = []
 
