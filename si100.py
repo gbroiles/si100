@@ -6,10 +6,12 @@ import sys
 import PySimpleGUI as sg
 import pdfrw
 from resource import statelist
-#from uszipcode import SearchEngine, SimpleZipcode, Zipcode
+
+# from uszipcode import SearchEngine, SimpleZipcode, Zipcode
 import pprint
 
 output_pdf_path = "test.pdf"
+
 
 def main():
     """ main event loop """
@@ -25,10 +27,10 @@ def main():
     def fill_dict(values):
         data = {}
         for key in values.keys():
-#            print(key)
-#        pprint.pprint(values)
-#        data["2EntityName"] = values["2EntityName"]
-#        data["2EntityNumber"] = values["2EntityNumber"]
+            #            print(key)
+            #        pprint.pprint(values)
+            #        data["2EntityName"] = values["2EntityName"]
+            #        data["2EntityNumber"] = values["2EntityNumber"]
             if values[key]:
                 data[key] = values[key]
                 print(key, "=", data[key])
@@ -54,7 +56,7 @@ def main():
             sg.T("City:"),
             sg.In(key="3aCity"),
             sg.T("State: CA*"),
-            sg.In("CA", key="3aState", visible=False)
+            sg.In("CA", key="3aState", visible=False),
         ],
         [sg.T("* State must be California")],
     ]
@@ -68,7 +70,7 @@ def main():
             sg.T("City:"),
             sg.In(key="3bCity"),
             sg.T("State:"),
-            sg.Combo(statelist, key="3bState", size=(3,1)),
+            sg.Combo(statelist, key="3bState", size=(3, 1)),
         ],
     ]
 
@@ -98,7 +100,7 @@ def main():
             sg.T("City:"),
             sg.In(key="ceo_City", size=(15, 1)),
             sg.T("State:"),
-            sg.Combo(statelist, key="ceo_State", size=(3,1)),
+            sg.Combo(statelist, key="ceo_State", size=(3, 1)),
             sg.T("ZIP:"),
             sg.In(key="ceo_ZIP", size=(10, 1)),
         ],
@@ -123,7 +125,7 @@ def main():
             sg.T("City:"),
             sg.In(key="sec_City", size=(15, 1)),
             sg.T("State:"),
-            sg.Combo(statelist, key="sec_State", size=(3,1)),
+            sg.Combo(statelist, key="sec_State", size=(3, 1)),
             sg.T("ZIP:"),
             sg.In(key="sec_ZIP", size=(10, 1)),
         ],
@@ -148,7 +150,7 @@ def main():
             sg.T("City:"),
             sg.In(key="cfo_City", size=(15, 1)),
             sg.T("State:"),
-            sg.Combo(statelist, key="cfo_State", size=(3,1)),
+            sg.Combo(statelist, key="cfo_State", size=(3, 1)),
             sg.T("ZIP:"),
             sg.In(key="cfo_ZIP", size=(10, 1)),
         ],
@@ -164,15 +166,28 @@ def main():
         [sg.Radio("Agent is an individual", "agent1", default=True)],
         [sg.Radio("Agent is a corporation", "agent1")],
         [sg.T("Agent corporate name:"), sg.In(key="agent_corpname")],
-        [sg.T("Agent first name:"), sg.In(key="agent_given", size=(15,1)),
-        sg.T("Agent middle name:"), sg.In(key="agent_middle", size=(15,1))],
-        [sg.T("Agent last name:"), sg.In(key="agent_last"),
-        sg.T("Agent suffix:"), sg.In(key="agent_suffix")],
+        [
+            sg.T("Agent first name:"),
+            sg.In(key="agent_given", size=(15, 1)),
+            sg.T("Agent middle name:"),
+            sg.In(key="agent_middle", size=(15, 1)),
+        ],
+        [
+            sg.T("Agent last name:"),
+            sg.In(key="agent_last"),
+            sg.T("Agent suffix:"),
+            sg.In(key="agent_suffix"),
+        ],
         [sg.Button("Copy from corporation physical address", key="Copy_agent_Addr")],
-        [sg.T("Agent street address:"), sg.In(key="agent_Street", size=(40,1))],
-        [sg.T("Agent city:"), sg.In(key="agent_City"),
-        sg.T("Agent state: CA"), sg.In("CA", key="agent_State", visible=False),
-        sg.T("Agent ZIP:"), sg.In(key="agent_ZIP")],
+        [sg.T("Agent street address:"), sg.In(key="agent_Street", size=(40, 1))],
+        [
+            sg.T("Agent city:"),
+            sg.In(key="agent_City"),
+            sg.T("Agent state: CA"),
+            sg.In("CA", key="agent_State", visible=False),
+            sg.T("Agent ZIP:"),
+            sg.In(key="agent_ZIP"),
+        ],
     ]
     tab4_layout = [
         [sg.Text("Corporation name:"), sg.In(key="2EntityName")],
@@ -220,12 +235,12 @@ def main():
             pdfrw.PdfWriter().write(output_pdf_path, finished_pdf)
         if event == "3aZIP":
             continue
-#            potential = values['3aZIP']
-#            print(event, potential)
-#            if len(potential) == 5:
-#                with SearchEngine() as search:
-#                    zipcode = search.by_zipcode(values['3aZIP'], zipcode_type=None)
-#                window.FindElement("3aCity").update(zipcode.major_city)
+        #            potential = values['3aZIP']
+        #            print(event, potential)
+        #            if len(potential) == 5:
+        #                with SearchEngine() as search:
+        #                    zipcode = search.by_zipcode(values['3aZIP'], zipcode_type=None)
+        #                window.FindElement("3aCity").update(zipcode.major_city)
         if event == "Copy_mail_Addr":
             window.FindElement("3bCity").update(values["3aCity"])
             window.FindElement("3bState").update(values["3aState"])
@@ -251,7 +266,6 @@ def main():
             window.FindElement("agent_State").update(values["3aState"])
             window.FindElement("agent_Street").update(values["3aAddress"])
             window.FindElement("agent_ZIP").update(values["3aZIP"])
-
 
     window.close()
 
