@@ -5,6 +5,7 @@ import sys
 
 import PySimpleGUI as sg
 import pdfrw
+from resource import statelist
 
 output_pdf_path = "test.pdf"
 
@@ -57,7 +58,7 @@ def main():
             sg.T("City:"),
             sg.In(key="3bCity"),
             sg.T("State:"),
-            sg.In(key="3bState", size=(2, 1)),
+            sg.Combo(statelist, key="3bState", size=(3,1)),
             sg.T("ZIP:"),
             sg.In(key="3bZIP", size=(11, 1)),
         ],
@@ -89,7 +90,7 @@ def main():
             sg.T("City:"),
             sg.In(key="ceo_City", size=(15, 1)),
             sg.T("State:"),
-            sg.In(key="ceo_State", size=(2, 1)),
+            sg.Combo(statelist, key="ceo_State", size=(3,1)),
             sg.T("ZIP:"),
             sg.In(key="ceo_ZIP", size=(10, 1)),
         ],
@@ -114,7 +115,7 @@ def main():
             sg.T("City:"),
             sg.In(key="sec_City", size=(15, 1)),
             sg.T("State:"),
-            sg.In(key="sec_State", size=(2, 1)),
+            sg.Combo(statelist, key="sec_State", size=(3,1)),
             sg.T("ZIP:"),
             sg.In(key="sec_ZIP", size=(10, 1)),
         ],
@@ -139,7 +140,7 @@ def main():
             sg.T("City:"),
             sg.In(key="cfo_City", size=(15, 1)),
             sg.T("State:"),
-            sg.In(key="cfo_State", size=(2, 1)),
+            sg.Combo(statelist, key="cfo_State", size=(3,1)),
             sg.T("ZIP:"),
             sg.In(key="cfo_ZIP", size=(10, 1)),
         ],
