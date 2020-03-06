@@ -1,3 +1,6 @@
+
+statelist = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+
 pdf = """
 JVBERi0xLjYNJeLjz9MNCjE4NCAwIG9iag08PC9MaW5lYXJpemVkIDEvTCA2OTAwNzkvTyAxODYv
 RSAxNTM0MzEvTiAyL1QgNjg5NjQwL0ggWyA2MDAgMzMyXT4+DWVuZG9iag0gICAgICAgICAgICAg
