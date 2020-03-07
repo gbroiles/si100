@@ -165,38 +165,38 @@ def main():
     ]
 
     tab3_layout = [
-        [sg.Radio("Agent is an individual", "agent1", default=True)],
-        [sg.Radio("Agent is a corporation", "agent1")],
-        [sg.T("Agent corporate name:"), sg.In(key="agent_corpname")],
+        [sg.Radio("Agent is an individual", "agent1", key="ind_agent", default=True, enable_events=True)],
+        [sg.Radio("Agent is a corporation", "agent1", key="corp_agent" enable_events=True)],
+        [sg.T("Agent corporate name:", visible=False), sg.In(key="agent_corpname", visible=False)],
         [
-            sg.T("Agent first name:"),
-            sg.In(key="agent_given", size=(15, 1)),
-            sg.T("Agent middle name:"),
-            sg.In(key="agent_middle", size=(15, 1)),
+            sg.T("Agent first name:", key="ind_agent_1"),
+            sg.In(key="agent_given", size=(15, 1), key="ind_agent_2"),
+            sg.T("Agent middle name:", key="ind_agent_3"),
+            sg.In(key="agent_middle", size=(15, 1), key="ind_agent_4"),
         ],
         [
-            sg.T("Agent last name:"),
-            sg.In(key="agent_last"),
-            sg.T("Agent suffix:"),
-            sg.In(key="agent_suffix"),
+            sg.T("Agent last name:", key="ind_agent_5"),
+            sg.In(key="agent_last", key="ind_agent_6"),
+            sg.T("Agent suffix:", key="ind_agent_7"),
+            sg.In(key="agent_suffix", size=(5, 1), key="ind_agent_8"),
         ],
         [sg.Button("Copy from corporation physical address", key="Copy_agent_Addr")],
         [sg.T("Agent street address:"), sg.In(key="agent_Street", size=(40, 1))],
         [
             sg.T("Agent city:"),
-            sg.In(key="agent_City"),
+            sg.In(key="agent_City", size=(15, 1)),
             sg.T("Agent state: CA"),
             sg.In("CA", key="agent_State", visible=False),
             sg.T("Agent ZIP:"),
-            sg.In(key="agent_ZIP"),
+            sg.In(key="agent_ZIP", size=(10, 1)),
         ],
     ]
     tab4_layout = [
         [sg.Text("Corporation name:"), sg.In(key="2EntityName")],
-        [sg.Text("Entity number:"), sg.In(key="2EntityNumber")],
+        [sg.Text("Entity number:"), sg.In(key="2EntityNumber", size=(12, 1))],
         [
             sg.Text("Submission comments:"),
-            sg.Multiline(key="submission_comments", size=(45, 5)),
+            sg.Multiline(key="submission_comments", size=(45, 6), autoscroll=False),
         ],
     ]
 
@@ -226,6 +226,10 @@ def main():
 
     while True:
         event, values = window.read()
+        pprint.pprint(event)
+        pprint.pprint(values)
+        if event == "Agent is an individual":
+            print("Agent is an individual")
         if event in (None, "Cancel"):
             break
         if event == "Print":
@@ -234,8 +238,11 @@ def main():
         if event == "Save":
             formdata = fill_dict(values)
             finished_pdf = fill_form(formdata)
-            output_path = sg.PopupGetFile('Please enter filename to save', save_as=True)
-            pdfrw.PdfWriter().write(output_path, finished_pdf)
+            output_path = sg.popup_get_file('Save as', save_as=True, file_types=(('PDF', '*.pdf'),),)
+#            output_path = sg.FileSaveAs()
+#            pprint.pprint(output_path)
+            if output_path:
+                pdfrw.PdfWriter().write(output_path, finished_pdf)
         if event == "3aZIP":
             continue
         #            potential = values['3aZIP']
