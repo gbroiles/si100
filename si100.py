@@ -1,26 +1,27 @@
 #! /usr/bin/env python3
-import datetime
-import os
-import sys
+# import datetime
+# import os
+# import sys
 
-import PySimpleGUI as sg
-import pdfrw
+import pprint
 from resource import statelist
+import PySimpleGUI as sg
 
 # from uszipcode import SearchEngine, SimpleZipcode, Zipcode
-import pprint
+import pdfrw
 
-output_pdf_path = "test.pdf"
+INPUT_PDF_PATH = "corp_si100.pdf"
 
 
 def main():
     """ main event loop """
-    global output_pdf_path
+    global OUTPUT_PDF_PATH
+    global INPUT_PDF_PATH
 
     ANNOT_KEY = "/Annots"
     ANNOT_FIELD_KEY = "/T"
-    ANNOT_VAL_KEY = "/V"
-    ANNOT_RECT_KEY = "/Rect"
+    #    ANNOT_VAL_KEY = "/V"
+    #    ANNOT_RECT_KEY = "/Rect"
     SUBTYPE_KEY = "/Subtype"
     WIDGET_SUBTYPE_KEY = "/Widget"
 
@@ -37,15 +38,16 @@ def main():
         return data
 
     def fill_form(data_dict):
-        template_pdf = pdfrw.PdfReader("corp_so100.pdf")
-        annotations = template_pdf.pages[0][ANNOT_KEY]
-        for annotation in annotations:
-            if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
-                if annotation[ANNOT_FIELD_KEY]:
-                    key = annotation[ANNOT_FIELD_KEY][1:-1]
-                    if key in data_dict.keys():
-                        annotation.update(pdfrw.PdfDict(V="{}".format(data_dict[key])))
-                        annotation.update(pdfrw.PdfDict(Ff=1))
+        template_pdf = pdfrw.PdfReader(INPUT_PDF_PATH)
+        for page in range(len(template_pdf.pages)):
+            annotations = template_pdf.pages[page][ANNOT_KEY]
+            for annotation in annotations:
+                if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+                    if annotation[ANNOT_FIELD_KEY]:
+                        key = annotation[ANNOT_FIELD_KEY][1:-1]
+                        if key in data_dict.keys():
+                            annotation.update(pdfrw.PdfDict(V="{}".format(data_dict[key])))
+                            annotation.update(pdfrw.PdfDict(Ff=1))
         return template_pdf
 
     phy_addr_layout = [
@@ -232,7 +234,8 @@ def main():
         if event == "Save":
             formdata = fill_dict(values)
             finished_pdf = fill_form(formdata)
-            pdfrw.PdfWriter().write(output_pdf_path, finished_pdf)
+            output_path = sg.PopupGetFile('Please enter filename to save', save_as=True)
+            pdfrw.PdfWriter().write(output_path, finished_pdf)
         if event == "3aZIP":
             continue
         #            potential = values['3aZIP']
