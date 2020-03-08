@@ -255,7 +255,7 @@ def main():
         if event == "Save":
             formdata = fill_dict(values)
             finished_pdf = fill_form(formdata)
-            output_path = sg.popup_get_file(
+            output_path = sg.PopupGetFile(
                 "Save as", save_as=True, file_types=(("PDF", "*.pdf"),),
             )
             #            output_path = sg.FileSaveAs()
