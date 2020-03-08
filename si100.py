@@ -46,7 +46,9 @@ def main():
                     if annotation[ANNOT_FIELD_KEY]:
                         key = annotation[ANNOT_FIELD_KEY][1:-1]
                         if key in data_dict.keys():
-                            annotation.update(pdfrw.PdfDict(V="{}".format(data_dict[key])))
+                            annotation.update(
+                                pdfrw.PdfDict(V="{}".format(data_dict[key]))
+                            )
                             annotation.update(pdfrw.PdfDict(Ff=1))
         return template_pdf
 
@@ -165,20 +167,35 @@ def main():
     ]
 
     tab3_layout = [
-        [sg.Radio("Agent is an individual", "agent1", key="ind_agent", default=True, enable_events=True)],
-        [sg.Radio("Agent is a corporation", "agent1", key="corp_agent" enable_events=True)],
-        [sg.T("Agent corporate name:", visible=False), sg.In(key="agent_corpname", visible=False)],
+        [
+            sg.Radio(
+                "Agent is an individual",
+                "agent1",
+                key="ind_agent",
+                default=True,
+                enable_events=True,
+            )
+        ],
+        [
+            sg.Radio(
+                "Agent is a corporation", "agent1", key="corp_agent", enable_events=True
+            )
+        ],
+        [
+            sg.T("Agent corporate name:", visible=False),
+            sg.In(key="agent_corpname", visible=False),
+        ],
         [
             sg.T("Agent first name:", key="ind_agent_1"),
-            sg.In(key="agent_given", size=(15, 1), key="ind_agent_2"),
+            sg.In(key="agent_given", size=(15, 1)),
             sg.T("Agent middle name:", key="ind_agent_3"),
-            sg.In(key="agent_middle", size=(15, 1), key="ind_agent_4"),
+            sg.In(key="agent_middle", size=(15, 1)),
         ],
         [
             sg.T("Agent last name:", key="ind_agent_5"),
-            sg.In(key="agent_last", key="ind_agent_6"),
+            sg.In(key="agent_last"),
             sg.T("Agent suffix:", key="ind_agent_7"),
-            sg.In(key="agent_suffix", size=(5, 1), key="ind_agent_8"),
+            sg.In(key="agent_suffix", size=(5, 1)),
         ],
         [sg.Button("Copy from corporation physical address", key="Copy_agent_Addr")],
         [sg.T("Agent street address:"), sg.In(key="agent_Street", size=(40, 1))],
@@ -238,9 +255,11 @@ def main():
         if event == "Save":
             formdata = fill_dict(values)
             finished_pdf = fill_form(formdata)
-            output_path = sg.popup_get_file('Save as', save_as=True, file_types=(('PDF', '*.pdf'),),)
-#            output_path = sg.FileSaveAs()
-#            pprint.pprint(output_path)
+            output_path = sg.popup_get_file(
+                "Save as", save_as=True, file_types=(("PDF", "*.pdf"),),
+            )
+            #            output_path = sg.FileSaveAs()
+            #            pprint.pprint(output_path)
             if output_path:
                 pdfrw.PdfWriter().write(output_path, finished_pdf)
         if event == "3aZIP":
