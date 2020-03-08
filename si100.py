@@ -182,7 +182,7 @@ def main():
             )
         ],
         [
-            sg.T("Agent corporate name:", visible=False),
+            sg.T("Agent corporate name:", key="agent_corp_name_label", visible=False),
             sg.In(key="agent_corpname", visible=False),
         ],
         [
@@ -245,8 +245,35 @@ def main():
         event, values = window.read()
         pprint.pprint(event)
         pprint.pprint(values)
-        if event == "Agent is an individual":
-            print("Agent is an individual")
+        if event == "ind_agent":
+            window.FindElement("agent_corp_name_label").update(visible=False)
+            window.FindElement("agent_corpname").update(visible=False)
+            window.FindElement("ind_agent_1").update(visible=True)
+            window.FindElement("agent_given").update(visible=True)
+            window.FindElement("ind_agent_3").update(visible=True)
+            window.FindElement("agent_middle").update(visible=True)
+            window.FindElement("ind_agent_5").update(visible=True)
+            window.FindElement("agent_last").update(visible=True)
+            window.FindElement("ind_agent_7").update(visible=True)
+            window.FindElement("agent_suffix").update(visible=True)
+            window.FindElement("agent_City").update(visible=True)
+            window.FindElement("agent_State").update(visible=True)
+            window.FindElement("agent_ZIP").update(visible=True)
+        if event == "corp_agent":
+            window.FindElement("agent_corp_name_label").update(visible=True)
+            window.FindElement("agent_corpname").update(visible=True)
+            window.FindElement("ind_agent_1").update(visible=False)
+            window.FindElement("agent_given").update(visible=False)
+            window.FindElement("ind_agent_3").update(visible=False)
+            window.FindElement("agent_middle").update(visible=False)
+            window.FindElement("ind_agent_5").update(visible=False)
+            window.FindElement("agent_last").update(visible=False)
+            window.FindElement("ind_agent_7").update(visible=False)
+            window.FindElement("agent_suffix").update(visible=False)
+            window.FindElement("agent_City").update(visible=False)
+            window.FindElement("agent_State").update(visible=False)
+            window.FindElement("agent_ZIP").update(visible=False)
+
         if event in (None, "Cancel"):
             break
         if event == "Print":
