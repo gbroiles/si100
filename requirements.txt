@@ -1,2 +1,2 @@
-pdfrw>=0.4
-PySimpleGUI>=4.16.0
+pdfrw
+PySimpleGUI
